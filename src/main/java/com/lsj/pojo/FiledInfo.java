@@ -1,5 +1,8 @@
 package com.lsj.pojo;
 
-public class FiledInfo extends Info {
+import lombok.Data;
 
+@Data
+public class FiledInfo extends Info {
+    private String fieldType;
 }
