@@ -1,6 +1,7 @@
 package com.lsj.utils;
 
 import com.alibaba.fastjson.JSON;
+import com.lsj.MyEnum.DbType;
 import com.lsj.pojo.ClassInfo;
 import com.lsj.pojo.FiledInfo;
 
@@ -25,7 +26,8 @@ public class AnalysisPath {
         getAllClass(getPath("com/lsj/Test"),classPath);
 
         List<ClassInfo> classInfoList = getClassInFo(classPath);
-        System.out.println(JSON.toJSONString(classInfoList));
+        List<String> sqlList = PojoToMysql.getsql(classInfoList, DbType.MYSQL);
+        System.out.println(JSON.toJSONString(sqlList));
     }
 
     private static List<ClassInfo> getClassInFo(LinkedList<String> classPath) {

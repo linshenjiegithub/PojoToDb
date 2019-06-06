@@ -8,7 +8,7 @@ import java.util.List;
 
 public class PojoToMysql {
 
-    public List<String> getsql(List<ClassInfo> classInfoList, DbType dbType) {
+    public static List<String> getsql(List<ClassInfo> classInfoList, DbType dbType) {
         List<String> sqlList = new LinkedList<>();
         for (ClassInfo classInfo : classInfoList) {
             sqlList.add(getsql(classInfo, dbType));
@@ -16,8 +16,11 @@ public class PojoToMysql {
         return sqlList;
     }
 
-    public String getsql(ClassInfo classInfo, DbType dbType) {
+    public static String getsql(ClassInfo classInfo, DbType dbType) {
         StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("create table ");
+        stringBuffer.append(classInfo.getName()+" {");
+        stringBuffer.append("}");
         return stringBuffer.toString();
     }
 }

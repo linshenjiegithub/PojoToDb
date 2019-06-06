@@ -1,9 +1,9 @@
 package com.lsj.MyEnum;
 
 public enum DbType {
-    MYSQL((Integer) 1, "mysql"),
-    ORACLE((Integer) 1, "oracle"),
-    SQLSERVER((Integer) 1, "mysql");
+    MYSQL(1, "mysql"),
+    ORACLE(1, "oracle"),
+    SQLSERVER(1, "mysql");
 
     public Integer value;
 
