@@ -29,28 +29,26 @@ public class AnalysisPath {
     }
 
     private static List<ClassInfo> getClassInFo(LinkedList<String> classPath) {
-
         List<ClassInfo> classInfos = new LinkedList<>();
         try {
             for(String path:classPath){
                 Class clazz = Class.forName(path);
                 ClassInfo classInfo = new ClassInfo();
                 classInfo.setName(clazz.getSimpleName());
-                classInfo.setAnnotationList(Arrays.asList(clazz.getAnnotations()));
-                Field[] fields = clazz.getFields();
+                classInfo.setAnnotationList(Arrays.asList(clazz.getDeclaredAnnotations()));
+                Field[] fields = clazz.getDeclaredFields();
                 if(fields!=null && fields.length>0){
                     List<FiledInfo> filedInfos = new ArrayList<>(fields.length);
                     for(Field field:fields){
                         FiledInfo filedInfo = new FiledInfo();
                         filedInfo.setName(field.getName());
-                        filedInfo.setAnnotationList(Arrays.asList(field.getAnnotations()));
+                        filedInfo.setAnnotationList(Arrays.asList(field.getDeclaredAnnotations()));
                         filedInfo.setFieldType(field.getType().getSimpleName());
                         filedInfos.add(filedInfo);
                     }
                     classInfo.setFiledInfoList(filedInfos);
                 }
                 classInfos.add(classInfo);
-
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
